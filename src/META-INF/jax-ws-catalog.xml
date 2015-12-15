@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://vaccineappwebservice.elasticbeanstalk.com/VaccineApp?wsdl" uri="wsdl/vaccineappwebservice.elasticbeanstalk.com/VaccineApp.wsdl"/>
+    <system systemId="http://vaccineappwebservice.elasticbeanstalk.com:80/VaccineApp?xsd=1" uri="wsdl/vaccineappwebservice.elasticbeanstalk.com_80/VaccineApp.xsd_1.xsd"/>
+</catalog>

@@ -1,0 +1,277 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.1-b419 (branches/2.3.1.x-7937; 2014-08-04T08:11:03+0000) JAXWS-RI/2.2.10-b140803.1500 JAXWS-API/2.2.11 JAXB-RI/2.2.10-b140802.1033 JAXB-API/2.2.12-b140109.1041 svn-revision#unknown. --><xs:schema xmlns:tns="http://muslumyusuf.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://muslumyusuf.com/">
+
+<xs:element name="addComment" type="tns:addComment"/>
+
+<xs:element name="addCommentResponse" type="tns:addCommentResponse"/>
+
+<xs:element name="add_Baby" type="tns:add_Baby"/>
+
+<xs:element name="add_BabyResponse" type="tns:add_BabyResponse"/>
+
+<xs:element name="forgottenPassword" type="tns:forgottenPassword"/>
+
+<xs:element name="forgottenPasswordResponse" type="tns:forgottenPasswordResponse"/>
+
+<xs:element name="getBabies" type="tns:getBabies"/>
+
+<xs:element name="getBabiesResponse" type="tns:getBabiesResponse"/>
+
+<xs:element name="getComment" type="tns:getComment"/>
+
+<xs:element name="getCommentResponse" type="tns:getCommentResponse"/>
+
+<xs:element name="get_Completed_Vaccines" type="tns:get_Completed_Vaccines"/>
+
+<xs:element name="get_Completed_VaccinesResponse" type="tns:get_Completed_VaccinesResponse"/>
+
+<xs:element name="log_in" type="tns:log_in"/>
+
+<xs:element name="log_inResponse" type="tns:log_inResponse"/>
+
+<xs:element name="register" type="tns:register"/>
+
+<xs:element name="registerResponse" type="tns:registerResponse"/>
+
+<xs:element name="update_DaBT_IPA_HIB" type="tns:update_DaBT_IPA_HIB"/>
+
+<xs:element name="update_DaBT_IPA_HIBResponse" type="tns:update_DaBT_IPA_HIBResponse"/>
+
+<xs:element name="update_Hepatit_A" type="tns:update_Hepatit_A"/>
+
+<xs:element name="update_Hepatit_AResponse" type="tns:update_Hepatit_AResponse"/>
+
+<xs:element name="update_Hepatit_B" type="tns:update_Hepatit_B"/>
+
+<xs:element name="update_Hepatit_BResponse" type="tns:update_Hepatit_BResponse"/>
+
+<xs:element name="update_KKK" type="tns:update_KKK"/>
+
+<xs:element name="update_KKKResponse" type="tns:update_KKKResponse"/>
+
+<xs:element name="update_KPA" type="tns:update_KPA"/>
+
+<xs:element name="update_KPAResponse" type="tns:update_KPAResponse"/>
+
+<xs:element name="update_OPA" type="tns:update_OPA"/>
+
+<xs:element name="update_OPAResponse" type="tns:update_OPAResponse"/>
+
+<xs:element name="update_RVA" type="tns:update_RVA"/>
+
+<xs:element name="update_RVAResponse" type="tns:update_RVAResponse"/>
+
+<xs:element name="update_Vaccines" type="tns:update_Vaccines"/>
+
+<xs:element name="update_VaccinesResponse" type="tns:update_VaccinesResponse"/>
+
+<xs:complexType name="getComment">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+<xs:element name="vaccine_name" type="xs:string" minOccurs="0"/>
+<xs:element name="beginning" type="xs:int"/>
+<xs:element name="end" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getCommentResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="forgottenPassword">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+<xs:element name="newPassword" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="forgottenPasswordResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="update_KPA">
+<xs:sequence>
+<xs:element name="baby_id" type="xs:int"/>
+<xs:element name="flag" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="update_KPAResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="update_RVA">
+<xs:sequence>
+<xs:element name="baby_id" type="xs:int"/>
+<xs:element name="flag" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="update_RVAResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="update_Hepatit_B">
+<xs:sequence>
+<xs:element name="baby_id" type="xs:int"/>
+<xs:element name="flag" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="update_Hepatit_BResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="update_OPA">
+<xs:sequence>
+<xs:element name="baby_id" type="xs:int"/>
+<xs:element name="flag" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="update_OPAResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="update_Hepatit_A">
+<xs:sequence>
+<xs:element name="baby_id" type="xs:int"/>
+<xs:element name="flag" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="update_Hepatit_AResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="log_in">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+<xs:element name="password" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="log_inResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="get_Completed_Vaccines">
+<xs:sequence>
+<xs:element name="baby_id" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="get_Completed_VaccinesResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="update_DaBT_IPA_HIB">
+<xs:sequence>
+<xs:element name="baby_id" type="xs:int"/>
+<xs:element name="flag" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="update_DaBT_IPA_HIBResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="update_Vaccines">
+<xs:sequence>
+<xs:element name="baby_id" type="xs:int"/>
+<xs:element name="flag" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="update_VaccinesResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="add_Baby">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+<xs:element name="baby_name" type="xs:string" minOccurs="0"/>
+<xs:element name="date_of_birth" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="add_BabyResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="update_KKK">
+<xs:sequence>
+<xs:element name="baby_id" type="xs:int"/>
+<xs:element name="flag" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="update_KKKResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="register">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+<xs:element name="fullname" type="xs:string" minOccurs="0"/>
+<xs:element name="password" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="registerResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addComment">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+<xs:element name="vaccine_name" type="xs:string" minOccurs="0"/>
+<xs:element name="comment" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addCommentResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getBabies">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getBabiesResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
