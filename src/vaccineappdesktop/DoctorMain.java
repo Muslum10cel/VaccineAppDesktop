@@ -7,6 +7,7 @@ package vaccineappdesktop;
 
 import com.muslumyusuf.VaccineApp;
 import com.muslumyusuf.VaccineApp_Service;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -103,9 +104,17 @@ public class DoctorMain extends javax.swing.JFrame {
 
         private void getCommentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getCommentButtonActionPerformed
 		// TODO add your handling code here:
+		JSONObject jSONObject;
 		try {
 			VaccineApp_Service app_Service = new VaccineApp_Service();
 			VaccineApp app = app_Service.getVaccineAppPort();
+			jSONObject = new JSONObject(app.getComment(jComboBox1.getSelectedItem().toString(), 0, 10));
+			JSONArray array = jSONObject.getJSONArray("COMMENTS");
+			for (int i = 0; i < array.length(); i++) {
+				JSONObject temp = array.getJSONObject(i);
+				jTextArea1.setText(temp.getString("USERNAME") + " " + temp.getString("COMENT_DATE") + " " + temp.getString("VACCINE_NAME") + " " + temp.getString("COMMENT") + "\n");	
+
+			}
 		} catch (Exception e) {
 		}
         }//GEN-LAST:event_getCommentButtonActionPerformed

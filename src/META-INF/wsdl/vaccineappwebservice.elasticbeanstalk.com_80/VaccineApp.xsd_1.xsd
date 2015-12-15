@@ -66,7 +66,6 @@
 
 <xs:complexType name="getComment">
 <xs:sequence>
-<xs:element name="username" type="xs:string" minOccurs="0"/>
 <xs:element name="vaccine_name" type="xs:string" minOccurs="0"/>
 <xs:element name="beginning" type="xs:int"/>
 <xs:element name="end" type="xs:int"/>
@@ -118,19 +117,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="update_Hepatit_B">
-<xs:sequence>
-<xs:element name="baby_id" type="xs:int"/>
-<xs:element name="flag" type="xs:int"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="update_Hepatit_BResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:int"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="update_OPA">
 <xs:sequence>
 <xs:element name="baby_id" type="xs:int"/>
@@ -139,6 +125,19 @@
 </xs:complexType>
 
 <xs:complexType name="update_OPAResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="update_Hepatit_B">
+<xs:sequence>
+<xs:element name="baby_id" type="xs:int"/>
+<xs:element name="flag" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="update_Hepatit_BResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:int"/>
 </xs:sequence>
