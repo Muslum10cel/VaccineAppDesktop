@@ -5,16 +5,27 @@
  */
 package vaccineappdesktop;
 
+import com.muslumyusuf.VaccineApp;
+import com.muslumyusuf.VaccineApp_Service;
+
 /**
  *
  * @author muslumoncel
  */
 public class AddBaby extends javax.swing.JFrame {
 
+	private static final long serialVersionUID = 1L;
+	private String username;
+
 	/**
 	 * Creates new form AddBaby
 	 */
 	public AddBaby() {
+
+	}
+
+	AddBaby(String username) {
+		this.username = username;
 		initComponents();
 	}
 
@@ -31,19 +42,25 @@ public class AddBaby extends javax.swing.JFrame {
                 jLabel1 = new javax.swing.JLabel();
                 babyNameTextField = new javax.swing.JTextField();
                 jLabel2 = new javax.swing.JLabel();
-                birthdateTExtField = new javax.swing.JFormattedTextField();
+                birthdateTextField = new javax.swing.JFormattedTextField();
                 addBabyButton = new javax.swing.JButton();
+                infoLabel = new javax.swing.JLabel();
 
-                setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+                setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
                 setResizable(false);
 
                 jLabel1.setText("Baby Name : ");
 
                 jLabel2.setText("Date Of Birth Of Baby : ");
 
-                birthdateTExtField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy-MM-dd"))));
+                birthdateTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy-MM-dd"))));
 
                 addBabyButton.setText("Add");
+                addBabyButton.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                addBabyButtonActionPerformed(evt);
+                        }
+                });
 
                 javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
                 jPanel1.setLayout(jPanel1Layout);
@@ -55,11 +72,12 @@ public class AddBaby extends javax.swing.JFrame {
                                         .addComponent(jLabel2)
                                         .addComponent(jLabel1))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(addBabyButton, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(infoLabel)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(addBabyButton, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
                                                 .addComponent(babyNameTextField)
-                                                .addComponent(birthdateTExtField, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)))
+                                                .addComponent(birthdateTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 );
                 jPanel1Layout.setVerticalGroup(
@@ -72,10 +90,11 @@ public class AddBaby extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel2)
-                                        .addComponent(birthdateTExtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(birthdateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addComponent(addBabyButton)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                                .addComponent(infoLabel))
                 );
 
                 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -98,12 +117,31 @@ public class AddBaby extends javax.swing.JFrame {
                 pack();
         }// </editor-fold>//GEN-END:initComponents
 
+        private void addBabyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBabyButtonActionPerformed
+		// TODO add your handling code here:
+		if (babyNameTextField.getText().length() != 0 && birthdateTextField.getText().length() != 0) {
+			try {
+				VaccineApp_Service app_Service = new VaccineApp_Service();
+				VaccineApp app = app_Service.getVaccineAppPort();
+				int response = app.addBaby(username, babyNameTextField.getText(), birthdateTextField.getText());
+				if (response == 1) {
+					infoLabel.setText("Baby added successfully");
+				} else if (response == -1) {
+					infoLabel.setText("Error");
+				}
+			} catch (Exception e) {
+			}
+		} else {
+			infoLabel.setText("Please fill required fields");
+		}
+        }//GEN-LAST:event_addBabyButtonActionPerformed
+
 	/**
 	 * @param args the command line arguments
 	 */
 	public static void main(String args[]) {
 		/* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+		//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
 		 * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
 		 */
@@ -123,7 +161,7 @@ public class AddBaby extends javax.swing.JFrame {
 		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
 			java.util.logging.Logger.getLogger(AddBaby.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		}
-        //</editor-fold>
+		//</editor-fold>
 
 		/* Create and display the form */
 		java.awt.EventQueue.invokeLater(new Runnable() {
@@ -136,7 +174,8 @@ public class AddBaby extends javax.swing.JFrame {
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JButton addBabyButton;
         private javax.swing.JTextField babyNameTextField;
-        private javax.swing.JFormattedTextField birthdateTExtField;
+        private javax.swing.JFormattedTextField birthdateTextField;
+        private javax.swing.JLabel infoLabel;
         private javax.swing.JLabel jLabel1;
         private javax.swing.JLabel jLabel2;
         private javax.swing.JPanel jPanel1;

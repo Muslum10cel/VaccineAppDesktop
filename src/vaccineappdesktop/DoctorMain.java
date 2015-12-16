@@ -7,6 +7,7 @@ package vaccineappdesktop;
 
 import com.muslumyusuf.VaccineApp;
 import com.muslumyusuf.VaccineApp_Service;
+import javax.swing.table.DefaultTableModel;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -17,12 +18,14 @@ import org.json.JSONObject;
 public class DoctorMain extends javax.swing.JFrame {
 
 	private static final long serialVersionUID = 1L;
+	private DefaultTableModel defaultTableModel = new DefaultTableModel();
 
 	/**
 	 * Creates new form DoctorMain
 	 */
 	public DoctorMain() {
 		initComponents();
+		defaultTableModel = (DefaultTableModel) commentTable.getModel();
 	}
 
 	/**
@@ -38,9 +41,9 @@ public class DoctorMain extends javax.swing.JFrame {
                 jComboBox1 = new javax.swing.JComboBox();
                 getCommentButton = new javax.swing.JButton();
                 jScrollPane1 = new javax.swing.JScrollPane();
-                jTextArea1 = new javax.swing.JTextArea();
+                commentTable = new javax.swing.JTable();
 
-                setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+                setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
                 jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "RVA", " " }));
 
@@ -51,9 +54,15 @@ public class DoctorMain extends javax.swing.JFrame {
                         }
                 });
 
-                jTextArea1.setColumns(20);
-                jTextArea1.setRows(5);
-                jScrollPane1.setViewportView(jTextArea1);
+                commentTable.setModel(new javax.swing.table.DefaultTableModel(
+                        new Object [][] {
+
+                        },
+                        new String [] {
+                                "USERNAME", "VACCINE NAME", "COMMENT", "COMMENT DATE"
+                        }
+                ));
+                jScrollPane1.setViewportView(commentTable);
 
                 javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
                 jPanel1.setLayout(jPanel1Layout);
@@ -62,12 +71,12 @@ public class DoctorMain extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jScrollPane1)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 808, Short.MAX_VALUE)
                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(getCommentButton)
-                                                .addGap(0, 79, Short.MAX_VALUE)))
+                                                .addGap(0, 0, Short.MAX_VALUE)))
                                 .addContainerGap())
                 );
                 jPanel1Layout.setVerticalGroup(
@@ -78,8 +87,8 @@ public class DoctorMain extends javax.swing.JFrame {
                                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(getCommentButton))
                                 .addGap(18, 18, 18)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
-                                .addContainerGap())
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(37, Short.MAX_VALUE))
                 );
 
                 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -112,8 +121,8 @@ public class DoctorMain extends javax.swing.JFrame {
 			JSONArray array = jSONObject.getJSONArray("COMMENTS");
 			for (int i = 0; i < array.length(); i++) {
 				JSONObject temp = array.getJSONObject(i);
-				jTextArea1.setText(temp.getString("USERNAME") + " " + temp.getString("COMENT_DATE") + " " + temp.getString("VACCINE_NAME") + " " + temp.getString("COMMENT") + "\n");	
-
+				Lists.comments.add(new Comment(temp.getString(Tags.COMMENT), temp.getString(Tags.COMMENT_DATE), temp.getString(Tags.VACCINE_NAME), temp.getString(Tags.USERNAME)));
+				defaultTableModel.addRow(new Object[]{temp.getString(Tags.USERNAME), temp.getString(Tags.VACCINE_NAME), temp.getString(Tags.COMMENT), temp.getString(Tags.COMMENT_DATE)});
 			}
 		} catch (Exception e) {
 		}
@@ -147,18 +156,16 @@ public class DoctorMain extends javax.swing.JFrame {
 		//</editor-fold>
 
 		/* Create and display the form */
-		java.awt.EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				new DoctorMain().setVisible(true);
-			}
+		java.awt.EventQueue.invokeLater(() -> {
+			new DoctorMain().setVisible(true);
 		});
 	}
 
         // Variables declaration - do not modify//GEN-BEGIN:variables
+        private javax.swing.JTable commentTable;
         private javax.swing.JButton getCommentButton;
         private javax.swing.JComboBox jComboBox1;
         private javax.swing.JPanel jPanel1;
         private javax.swing.JScrollPane jScrollPane1;
-        private javax.swing.JTextArea jTextArea1;
         // End of variables declaration//GEN-END:variables
 }

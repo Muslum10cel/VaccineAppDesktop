@@ -154,6 +154,7 @@ public class UserMain extends javax.swing.JFrame {
 
         private void addBabyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBabyButtonActionPerformed
                 // TODO add your handling code here:
+		new AddBaby(username).setVisible(true);
         }//GEN-LAST:event_addBabyButtonActionPerformed
 
 	/**

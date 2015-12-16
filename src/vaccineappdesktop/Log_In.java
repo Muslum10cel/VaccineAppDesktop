@@ -39,9 +39,9 @@ public class Log_In extends javax.swing.JFrame {
                 usernameTextField = new javax.swing.JTextField();
                 jLabel1 = new javax.swing.JLabel();
                 jLabel2 = new javax.swing.JLabel();
-                passwordTextField = new javax.swing.JTextField();
                 loginButton = new javax.swing.JButton();
                 log_error = new javax.swing.JLabel();
+                passwordTextField = new javax.swing.JPasswordField();
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
                 setResizable(false);
@@ -67,13 +67,12 @@ public class Log_In extends javax.swing.JFrame {
                                         .addComponent(jLabel1)
                                         .addComponent(jLabel2))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(log_error)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(usernameTextField)
                                         .addComponent(passwordTextField)
-                                        .addComponent(loginButton, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(log_error)
-                                                .addGap(0, 0, Short.MAX_VALUE)))
+                                        .addComponent(loginButton, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+                                        .addComponent(usernameTextField))
                                 .addContainerGap())
                 );
                 jPanel1Layout.setVerticalGroup(
@@ -187,7 +186,7 @@ public class Log_In extends javax.swing.JFrame {
         private javax.swing.JPanel jPanel1;
         private javax.swing.JLabel log_error;
         private javax.swing.JButton loginButton;
-        private javax.swing.JTextField passwordTextField;
+        private javax.swing.JPasswordField passwordTextField;
         private javax.swing.JTextField usernameTextField;
         // End of variables declaration//GEN-END:variables
 }
