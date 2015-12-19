@@ -18,12 +18,13 @@ import org.json.JSONObject;
  *
  * @author muslumoncel
  */
-public class UserMain extends javax.swing.JFrame {
+public final class UserMain extends javax.swing.JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private static final VaccineApp_Service app_Service = new VaccineApp_Service();
 	private VaccineApp app = null;
 	private String username = "";
+	private JSONObject jSONObject = null;
 	private DefaultTableModel defaultTableModel = new DefaultTableModel();
 
 	/**
@@ -33,22 +34,8 @@ public class UserMain extends javax.swing.JFrame {
 	 */
 	public UserMain(String username) {
 		this.username = username;
-		JSONObject jSONObject = null;
 		initComponents();
 		defaultTableModel = (DefaultTableModel) babiesTable.getModel();
-		try {
-			app = app_Service.getVaccineAppPort();
-			jSONObject = new JSONObject(app.getBabies(username));
-			JSONArray jSONArray = jSONObject.getJSONArray("BABIES");
-			for (int i = 0; i < jSONArray.length(); i++) {
-				JSONObject temp = jSONArray.getJSONObject(i);
-				Baby baby = new Baby(temp.getString("BABY_NAME"), temp.getInt("BABY_ID"));
-				Lists.babies.add(baby);
-				defaultTableModel.addRow(new Object[]{baby.getBaby_id(), baby.getBaby_name()});
-			}
-		} catch (JSONException ex) {
-			Logger.getLogger(UserMain.class.getName()).log(Level.SEVERE, null, ex);
-		}
 	}
 
 	private UserMain() {
@@ -70,6 +57,11 @@ public class UserMain extends javax.swing.JFrame {
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
                 setResizable(false);
+                addWindowListener(new java.awt.event.WindowAdapter() {
+                        public void windowOpened(java.awt.event.WindowEvent evt) {
+                                formWindowOpened(evt);
+                        }
+                });
 
                 babiesTable.setModel(new javax.swing.table.DefaultTableModel(
                         new Object [][] {
@@ -153,9 +145,14 @@ public class UserMain extends javax.swing.JFrame {
         }//GEN-LAST:event_babiesTableMouseClicked
 
         private void addBabyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBabyButtonActionPerformed
-                // TODO add your handling code here:
+		// TODO add your handling code here:
 		new AddBaby(username).setVisible(true);
         }//GEN-LAST:event_addBabyButtonActionPerformed
+
+        private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+                // TODO add your handling code here:
+		fillList();
+        }//GEN-LAST:event_formWindowOpened
 
 	/**
 	 * @param args the command line arguments
@@ -196,4 +193,20 @@ public class UserMain extends javax.swing.JFrame {
         private javax.swing.JPanel jPanel1;
         private javax.swing.JScrollPane jScrollPane1;
         // End of variables declaration//GEN-END:variables
+
+	public void fillList() {
+		try {
+			app = app_Service.getVaccineAppPort();
+			jSONObject = new JSONObject(app.getBabies(username));
+			JSONArray jSONArray = jSONObject.getJSONArray("BABIES");
+			for (int i = 0; i < jSONArray.length(); i++) {
+				JSONObject temp = jSONArray.getJSONObject(i);
+				Baby baby = new Baby(temp.getString("BABY_NAME"), temp.getInt("BABY_ID"));
+				Lists.babies.add(baby);
+				defaultTableModel.addRow(new Object[]{baby.getBaby_id(), baby.getBaby_name()});
+			}
+		} catch (JSONException ex) {
+			Logger.getLogger(UserMain.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
 }

@@ -7,6 +7,7 @@ package vaccineappdesktop;
 
 import com.muslumyusuf.VaccineApp;
 import com.muslumyusuf.VaccineApp_Service;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,6 +17,7 @@ public class AddBaby extends javax.swing.JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private String username;
+	private DefaultTableModel defaultTableModel;
 
 	/**
 	 * Creates new form AddBaby
@@ -164,10 +166,8 @@ public class AddBaby extends javax.swing.JFrame {
 		//</editor-fold>
 
 		/* Create and display the form */
-		java.awt.EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				new AddBaby().setVisible(true);
-			}
+		java.awt.EventQueue.invokeLater(() -> {
+			new AddBaby().setVisible(true);
 		});
 	}
 
