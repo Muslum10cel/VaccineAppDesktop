@@ -7,6 +7,9 @@ package vaccineappdesktop;
 
 import com.muslumyusuf.VaccineApp;
 import com.muslumyusuf.VaccineApp_Service;
+import java.util.Objects;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
 import org.json.JSONObject;
 
 /**
@@ -16,7 +19,8 @@ import org.json.JSONObject;
 public class BabyVaccineDetails extends javax.swing.JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private VaccineApp_Service app_Service = new VaccineApp_Service();
+	private final VaccineApp_Service app_Service = new VaccineApp_Service();
+	private DefaultTableModel defaultTableModel = null;
 	/**
 	 * Creates new form BabyVaccineDetails
 	 */
@@ -24,14 +28,10 @@ public class BabyVaccineDetails extends javax.swing.JFrame {
 
 	public BabyVaccineDetails(int baby_id) {
 		this.baby_id = baby_id;
-		JSONObject jSONObject = null;
 		initComponents();
 		setLocationRelativeTo(null);
-		try {
-			VaccineApp app = app_Service.getVaccineAppPort();
-			jSONObject = new JSONObject(app.getCompletedVaccines(baby_id));
-		} catch (Exception e) {
-		}
+		defaultTableModel = (DefaultTableModel) vaccineDetailsTable.getModel();
+		fillTable();
 	}
 
 	private BabyVaccineDetails() {
@@ -47,18 +47,57 @@ public class BabyVaccineDetails extends javax.swing.JFrame {
         private void initComponents() {
 
                 jPanel1 = new javax.swing.JPanel();
+                jScrollPane1 = new javax.swing.JScrollPane();
+                vaccineDetailsTable = new javax.swing.JTable();
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+                setResizable(false);
+
+                vaccineDetailsTable.setModel(new javax.swing.table.DefaultTableModel(
+                        new Object [][] {
+
+                        },
+                        new String [] {
+                                "Vaccine Name", "Status"
+                        }
+                ) {
+                        Class[] types = new Class [] {
+                                java.lang.String.class, java.lang.Integer.class
+                        };
+                        boolean[] canEdit = new boolean [] {
+                                false, false
+                        };
+
+                        public Class getColumnClass(int columnIndex) {
+                                return types [columnIndex];
+                        }
+
+                        public boolean isCellEditable(int rowIndex, int columnIndex) {
+                                return canEdit [columnIndex];
+                        }
+                });
+                vaccineDetailsTable.addMouseListener(new java.awt.event.MouseAdapter() {
+                        public void mouseClicked(java.awt.event.MouseEvent evt) {
+                                vaccineDetailsTableMouseClicked(evt);
+                        }
+                });
+                jScrollPane1.setViewportView(vaccineDetailsTable);
 
                 javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
                 jPanel1.setLayout(jPanel1Layout);
                 jPanel1Layout.setHorizontalGroup(
                         jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 749, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
+                                .addContainerGap())
                 );
                 jPanel1Layout.setVerticalGroup(
                         jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 485, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 );
 
                 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -74,12 +113,20 @@ public class BabyVaccineDetails extends javax.swing.JFrame {
                         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addContainerGap())
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 );
 
                 pack();
         }// </editor-fold>//GEN-END:initComponents
+
+        private void vaccineDetailsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vaccineDetailsTableMouseClicked
+		// TODO add your handling code here:
+		if (Objects.equals(evt.getClickCount(), 2)) {
+
+		}
+
+        }//GEN-LAST:event_vaccineDetailsTableMouseClicked
 
 	/**
 	 * @param args the command line arguments
@@ -116,5 +163,52 @@ public class BabyVaccineDetails extends javax.swing.JFrame {
 
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JPanel jPanel1;
+        private javax.swing.JScrollPane jScrollPane1;
+        private javax.swing.JTable vaccineDetailsTable;
         // End of variables declaration//GEN-END:variables
+
+	private void fillTable() {
+		JSONObject jSONObject = null;
+		try {
+			VaccineApp app = app_Service.getVaccineAppPort();
+			jSONObject = new JSONObject(app.getCompletedVaccines(baby_id));
+
+			defaultTableModel.addRow(new Object[]{VaccineNames.BCG, jSONObject.getInt(Tags.BCG)});
+			defaultTableModel.addRow(new Object[]{VaccineNames.VARICELLA, jSONObject.getInt(Tags.VARICELLA)});
+			defaultTableModel.addRow(new Object[]{VaccineNames.DaBT_IPA, jSONObject.getInt(Tags.DaBT_IPA)});
+			defaultTableModel.addRow(new Object[]{VaccineNames.KMA4, jSONObject.getInt(Tags.KMA4)});
+			defaultTableModel.addRow(new Object[]{VaccineNames.HPA, jSONObject.getInt(Tags.HPA)});
+			defaultTableModel.addRow(new Object[]{VaccineNames.INFLUENZA, jSONObject.getInt(Tags.INFLUENZA)});
+
+			defaultTableModel.addRow(new Object[]{VaccineNames.FIRST_DaBT_IPA_HIB, jSONObject.getInt(Tags.FIRST_DaBT_IPA_HIB)});
+			defaultTableModel.addRow(new Object[]{VaccineNames.SECOND_DaBT_IPA_HIB, jSONObject.getInt(Tags.SECOND_DaBT_IPA_HIB)});
+			defaultTableModel.addRow(new Object[]{VaccineNames.THIRD_DaBT_IPA_HIB, jSONObject.getInt(Tags.THIRD_DaBT_IPA_HIB)});
+			defaultTableModel.addRow(new Object[]{VaccineNames.FOURTH_DaBT_IPA_HIB, jSONObject.getInt(Tags.FOURTH_DaBT_IPA_HIB)});
+			defaultTableModel.addRow(new Object[]{VaccineNames.FIFTH_DaBT_IPA_HIB, jSONObject.getInt(Tags.FIFTH_DaBT_IPA_HIB)});
+			defaultTableModel.addRow(new Object[]{VaccineNames.SIXTH_DaBT_IPA_HIB, jSONObject.getInt(Tags.SIXTH_DaBT_IPA_HIB)});
+
+			defaultTableModel.addRow(new Object[]{VaccineNames.FIRST_RVA, jSONObject.getInt(Tags.FIRST_RVA)});
+			defaultTableModel.addRow(new Object[]{VaccineNames.SECOND_RVA, jSONObject.getInt(Tags.SECOND_RVA)});
+			defaultTableModel.addRow(new Object[]{VaccineNames.THIRD_RVA, jSONObject.getInt(Tags.THIRD_RVA)});
+
+			defaultTableModel.addRow(new Object[]{VaccineNames.FIRST_OPA, jSONObject.getInt(Tags.FIRST_OPA)});
+			defaultTableModel.addRow(new Object[]{VaccineNames.SECOND_OPA, jSONObject.getInt(Tags.SECOND_OPA)});
+
+			defaultTableModel.addRow(new Object[]{VaccineNames.FIRST_KPA, jSONObject.getInt(Tags.FIRST_KPA)});
+			defaultTableModel.addRow(new Object[]{VaccineNames.SECOND_KPA, jSONObject.getInt(Tags.SECOND_KPA)});
+			defaultTableModel.addRow(new Object[]{VaccineNames.THIRD_KPA, jSONObject.getInt(Tags.THIRD_KPA)});
+			defaultTableModel.addRow(new Object[]{VaccineNames.FOURTH_KPA, jSONObject.getInt(Tags.FOURTH_KPA)});
+
+			defaultTableModel.addRow(new Object[]{VaccineNames.FIRST_KKK, jSONObject.getInt(Tags.FIRST_KKK)});
+			defaultTableModel.addRow(new Object[]{VaccineNames.SECOND_KKK, jSONObject.getInt(Tags.SECOND_KKK)});
+
+			defaultTableModel.addRow(new Object[]{VaccineNames.FIRST_HEPATIT_A, jSONObject.getInt(Tags.FIRST_HEPATIT_A)});
+			defaultTableModel.addRow(new Object[]{VaccineNames.SECOND_HEPATIT_A, jSONObject.getInt(Tags.SECOND_HEPATIT_A)});
+
+			defaultTableModel.addRow(new Object[]{VaccineNames.FIRST_HEPATIT_B, jSONObject.getInt(Tags.FIRST_HEPATIT_B)});
+			defaultTableModel.addRow(new Object[]{VaccineNames.SECOND_HEPATIT_B, jSONObject.getInt(Tags.SECOND_HEPATIT_B)});
+			defaultTableModel.addRow(new Object[]{VaccineNames.THIRD_HEPATIT_B, jSONObject.getInt(Tags.THIRD_HEPATIT_B)});
+		} catch (Exception e) {
+		}
+	}
 }

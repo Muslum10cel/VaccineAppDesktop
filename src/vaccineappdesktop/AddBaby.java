@@ -7,6 +7,7 @@ package vaccineappdesktop;
 
 import com.muslumyusuf.VaccineApp;
 import com.muslumyusuf.VaccineApp_Service;
+import java.util.Objects;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -127,9 +128,9 @@ public class AddBaby extends javax.swing.JFrame {
 				VaccineApp_Service app_Service = new VaccineApp_Service();
 				VaccineApp app = app_Service.getVaccineAppPort();
 				int response = app.addBaby(username, babyNameTextField.getText(), birthdateTextField.getText());
-				if (response == 1) {
+				if (Objects.equals(response, 1)) {
 					infoLabel.setText("Baby added successfully");
-				} else if (response == -1) {
+				} else if (Objects.equals(response, -1)) {
 					infoLabel.setText("Error");
 				}
 			} catch (Exception e) {

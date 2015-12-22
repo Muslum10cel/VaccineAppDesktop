@@ -7,8 +7,10 @@ package vaccineappdesktop;
 
 import com.muslumyusuf.VaccineApp;
 import com.muslumyusuf.VaccineApp_Service;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -134,13 +136,13 @@ public class Log_In extends javax.swing.JFrame {
 				}
 			}
 
-			if (log == 37) {
+			if (Objects.equals(log, 37)) {
 				new DoctorMain().setVisible(true);
-			} else if (log == 87) {
+			} else if (Objects.equals(log, 87)) {
 				this.dispose();
 				new UserMain(usernameTextField.getText()).setVisible(true);
 			} else {
-				System.out.println("Not valid");
+				JOptionPane.showMessageDialog(null, "Access denied!");
 			}
 
 		} else {

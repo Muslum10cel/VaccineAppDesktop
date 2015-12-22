@@ -7,6 +7,9 @@ package vaccineappdesktop;
 
 import com.muslumyusuf.VaccineApp;
 import com.muslumyusuf.VaccineApp_Service;
+import java.util.Enumeration;
+import java.util.Objects;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -139,9 +142,7 @@ public final class UserMain extends javax.swing.JFrame {
 
         private void babiesTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_babiesTableMouseClicked
 		// TODO add your handling code here:
-		if (evt.getClickCount() == 2) {
-			Object object = defaultTableModel.getValueAt(babiesTable.getSelectedRow(), babiesTable.getSelectedColumn());
-			new BabyVaccineDetails(Integer.parseInt(object.toString())).setVisible(true);
+		if (Objects.equals(evt.getClickCount(), 2)) {
 		}
         }//GEN-LAST:event_babiesTableMouseClicked
 
