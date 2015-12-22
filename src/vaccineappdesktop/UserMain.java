@@ -35,6 +35,7 @@ public final class UserMain extends javax.swing.JFrame {
 	public UserMain(String username) {
 		this.username = username;
 		initComponents();
+		setLocationRelativeTo(null);
 		defaultTableModel = (DefaultTableModel) babiesTable.getModel();
 	}
 
@@ -150,7 +151,7 @@ public final class UserMain extends javax.swing.JFrame {
         }//GEN-LAST:event_addBabyButtonActionPerformed
 
         private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-                // TODO add your handling code here:
+		// TODO add your handling code here:
 		fillList();
         }//GEN-LAST:event_formWindowOpened
 

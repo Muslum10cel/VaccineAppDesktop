@@ -25,6 +25,7 @@ public class DoctorMain extends javax.swing.JFrame {
 	 */
 	public DoctorMain() {
 		initComponents();
+		setLocationRelativeTo(null);
 		defaultTableModel = (DefaultTableModel) commentTable.getModel();
 	}
 

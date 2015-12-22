@@ -23,6 +23,7 @@ public class Register extends javax.swing.JFrame {
 	 */
 	public Register() {
 		initComponents();
+		setLocationRelativeTo(null);
 	}
 
 	/**
@@ -170,8 +171,8 @@ public class Register extends javax.swing.JFrame {
 		} else if (Objects.equals(result, -1)) {
 			JOptionPane.showMessageDialog(null, "Registration is failed! Something went wrong!");
 		}
-		
-		
+
+
         }//GEN-LAST:event_registerButtonActionPerformed
 
 	/**

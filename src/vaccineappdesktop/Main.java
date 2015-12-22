@@ -18,6 +18,7 @@ public class Main extends javax.swing.JFrame {
 	 */
 	public Main() {
 		initComponents();
+		setLocationRelativeTo(null);
 	}
 
 	/**
@@ -109,7 +110,7 @@ public class Main extends javax.swing.JFrame {
         }//GEN-LAST:event_loginButtonActionPerformed
 
         private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-                // TODO add your handling code here:
+		// TODO add your handling code here:
 		new Register().setVisible(true);
         }//GEN-LAST:event_registerButtonActionPerformed
 
@@ -138,7 +139,7 @@ public class Main extends javax.swing.JFrame {
 		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
 			java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		}
-        //</editor-fold>
+		//</editor-fold>
 		//</editor-fold>
 
 		/* Create and display the form */

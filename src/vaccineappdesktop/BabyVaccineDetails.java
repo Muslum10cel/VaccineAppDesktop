@@ -26,13 +26,13 @@ public class BabyVaccineDetails extends javax.swing.JFrame {
 		this.baby_id = baby_id;
 		JSONObject jSONObject = null;
 		initComponents();
+		setLocationRelativeTo(null);
 		try {
 			VaccineApp app = app_Service.getVaccineAppPort();
 			jSONObject = new JSONObject(app.getCompletedVaccines(baby_id));
 		} catch (Exception e) {
 		}
 	}
-
 
 	private BabyVaccineDetails() {
 	}

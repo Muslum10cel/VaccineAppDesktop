@@ -29,6 +29,7 @@ public class AddBaby extends javax.swing.JFrame {
 	AddBaby(String username) {
 		this.username = username;
 		initComponents();
+		setLocationRelativeTo(null);
 	}
 
 	/**
