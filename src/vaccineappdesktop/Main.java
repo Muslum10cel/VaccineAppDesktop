@@ -48,6 +48,11 @@ public class Main extends javax.swing.JFrame {
                 });
 
                 registerButton.setText("Register");
+                registerButton.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                registerButtonActionPerformed(evt);
+                        }
+                });
 
                 aboutUsButton.setText("About Us");
 
@@ -102,6 +107,11 @@ public class Main extends javax.swing.JFrame {
 		// TODO add your handling code here:
 		new Log_In().setVisible(true);
         }//GEN-LAST:event_loginButtonActionPerformed
+
+        private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+                // TODO add your handling code here:
+		new Register().setVisible(true);
+        }//GEN-LAST:event_registerButtonActionPerformed
 
 	/**
 	 * @param args the command line arguments
